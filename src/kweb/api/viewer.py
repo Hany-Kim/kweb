@@ -10,7 +10,11 @@ from starlette.templating import _TemplateResponse
 
 from .. import __version__ as version
 
-router = APIRouter()
+router = APIRouter(
+    prefix="/view",
+    tags=["view"],
+    responses={404: {"description": "Not found"}},
+)
 templates = Jinja2Templates(
     directory=(Path(__file__).parent.parent / "templates").resolve()
 )
@@ -23,7 +27,7 @@ class FileView(BaseModel):
     rdb: str | None = None
 
 
-@router.get("/view", response_class=HTMLResponse)
+@router.get("/", response_class=HTMLResponse)
 async def file_view_static(
     request: Request, params: Annotated[FileView, Depends()]
 ) -> _TemplateResponse:

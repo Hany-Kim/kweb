@@ -10,7 +10,11 @@ from ..config import Config
 
 # from . import __version__ as version
 
-router = APIRouter()
+router = APIRouter(
+    prefix="/",
+    tags=["browser"],
+    responses={404: {"description": "Not found"}},
+)
 templates = Jinja2Templates(
     directory=(Path(__file__).parent.parent / "templates").resolve()
 )
