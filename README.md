@@ -6,43 +6,35 @@ Based on https://github.com/klayoutmatthias/canvas2canvas
 
 ## Install & Run
 
-### Through pypi
+### Through uv
 
-From a python virtual environment run:
+python uv로 다음을 실행합니다:
 
 ```bash
-python -m pip install kweb
 export KWEB_FILESLOCATION="/path/to/gds/folder" # or the windows equivalent with set
-uvicorn --reload kweb.default:app
-````
+cd src/kweb
+uv run default.py
+```
 
 #### Advanced Usage
 
-KWeb offers two basic apps:
+KWeb은 두 가지 기본 앱을 제공합니다.
 
-- Browser:
+브라우저:
 
-  A version that provides a version with a file browser for a folder and the kweb viewer for viewing the gds file in that folder.
-  This can be used by importing the function `kweb.browser.get_app` and settings the `KWEB_FILESLOCATION` env variable of passing
-  `fileslocation=<Path object for target folder>` to the function. Alternatively there is a default one in `kweb.default.app` that
-  will only look for the env variable.
+폴더의 파일 브라우저와 해당 폴더의 gds 파일을 볼 수 있는 kweb 뷰어를 제공하는 버전입니다. 함수를 가져오고 env 변수를 kweb.browser.get_app설정하여 함수에 전달할 수 있습니다. 또는 env 변수만 찾는 기본 버전도 있습니다.KWEB_FILESLOCATIONfileslocation=<Path object for target folder>kweb.default.app
 
-- Viewer:
+뷰어:
 
-  Only enables the `/gds/<filename>` endpoints, no root path, i.e. no file browser. Available at `kweb.viewer.get_app`. This version
-  doesn't provide a listener for the env variable. Use the `fileslocation` parameter in the function instead.
+엔드포인트 만 활성화하고 /gds/<filename>루트 경로, 즉 파일 브라우저는 활성화하지 않습니다. 에서 사용할 수 있습니다 kweb.viewer.get_app. 이 버전은 env 변수에 대한 리스너를 제공하지 않습니다. fileslocation대신 함수의 매개변수를 사용하세요.
 
 ### Development
 
 #### Clone & Install
 
-
 ```bash
 # Clone the repository to your local
 git clone https://github.com/gdsfactory/kweb.git
-# Install the necessary dependencies
-cd /kweb
-python -m pip install -e .[dev]
 ```
 
 #### Set a folder for kweb to use when looking for gds files
@@ -55,17 +47,7 @@ export KWEB_FILESLOCATION=/path/to/folder/with/gdsfiles
 
 ```bash
 cd src/kweb
-uvicorn --reload default:app
+uv run default.py
 ```
 
-Copy the link http://127.0.0.1:8000/gds/file.gds (or http://localhost:8000/gds/file.gds also works) to your browser to open the waveguide example
-
-
-#### Contributing
-
-Please make sure you have also installed pre-commit before committing:
-
-```bash
-python -m pip install pre-commit
-pre-commit install
-```
+Copy the link http://127.0.0.1:8765/gds/file.gds (or http://localhost:8765/gds/file.gds also works) to your browser to open the waveguide example
