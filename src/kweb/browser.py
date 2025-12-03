@@ -5,8 +5,8 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import ValidationError
 
 from . import config
-from .api.browser import router as browser_router
-from .api.viewer import router as viewer_router
+from .controller.browser import router as browser_router
+from .controller.viewer import router as viewer_router
 from .layout_server import LayoutViewServerEndpoint
 
 

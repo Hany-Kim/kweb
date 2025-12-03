@@ -5,7 +5,7 @@ from fastapi.staticfiles import StaticFiles
 from starlette.routing import WebSocketRoute
 
 from . import config
-from .api.viewer import router
+from .controller.viewer import router
 
 # from .layout_server import EditableLayoutViewServerEndpoint
 from .layout_server import LayoutViewServerEndpoint
